@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">facsitio</string>
+
+    <string name="itinerarios_de_trabajo">Itinerarios de trabajo</string>
+    <string name="configuracion">Configuracion</string>
 </resources>

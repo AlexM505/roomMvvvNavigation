@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_workItinerary">
+
+    <fragment
+        android:id="@+id/navigation_workItinerary"
+        android:name="com.tda.facsitio.ui.workItinerary.WorkItineraryFragment"
+        android:label="@string/itinerarios_de_trabajo"
+        tools:layout="@layout/fragment_work_itinerary" />
+    <fragment
+        android:id="@+id/navigation_setting"
+        android:name="com.tda.facsitio.ui.setting.SettingFragment"
+        android:label="@string/configuracion"
+        tools:layout="@layout/fragment_setting" />
+</navigation>
