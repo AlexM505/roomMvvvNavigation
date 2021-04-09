@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.tda.facsitio.R
-import com.tda.facsitio.data.model.DhtItinerariosTrabajo
+import com.tda.facsitio.data.model.DhtItinTrabajo
 
 
 class WorkItineraryFragment : Fragment() {
@@ -22,14 +22,14 @@ class WorkItineraryFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_work_itinerary, container, false)
 
         //testing insert data
-        val itinerario = DhtItinerariosTrabajo(
+        val itinerary = DhtItinTrabajo(
             "212301999903", 3,"estado","","",
             "","","","",1,50,100,2,
             1,0,0,0,",",
-            "","","",""
+            "","",""
         )
 
-        mWorkItineraryViewModel.insertItinerarioTrabajo(itinerario)
+        mWorkItineraryViewModel.insertItinerarioTrabajo(itinerary)
 
         return view
     }

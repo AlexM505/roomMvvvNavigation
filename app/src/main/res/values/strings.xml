@@ -3,4 +3,7 @@
 
     <string name="itinerarios_de_trabajo">Itinerarios de trabajo</string>
     <string name="configuracion">Configuracion</string>
+
+<!--    itinerarios de trabajo fragment-->
+    <string name="no_hay_itinerarios_de_trabajo_cargados">No hay itinerarios de trabajo cargados</string>
 </resources>

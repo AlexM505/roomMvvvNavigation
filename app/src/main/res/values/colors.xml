@@ -10,6 +10,8 @@
     <color name="secondaryTextColor">#302F2F</color>
     <color name="white">#FFFF</color>
     <color name="black">#FF000000</color>
+    <color name="lightGray">#E6E6E6</color>
+    <color name="darkGray">#7E7D7D</color>
 
 <!--    Bottom bar-->
     <color name="bgBottombarColor">@color/white</color>

@@ -4,13 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.tda.facsitio.data.dao.DhtItinerariosTrabajoDao
-import com.tda.facsitio.data.model.DhtItinerariosTrabajo
+import com.tda.facsitio.data.dao.DhtItinTrabajoDao
+import com.tda.facsitio.data.model.DhtItinTrabajo
 
-@Database(version = 1, exportSchema = false, entities = [DhtItinerariosTrabajo::class])
+@Database(version = 1, exportSchema = false, entities = [DhtItinTrabajo::class])
 abstract class FactsitioDatabase : RoomDatabase() {
 
-    abstract fun dhtItinerariosTrabajoDao(): DhtItinerariosTrabajoDao
+    abstract fun dhtItinTrabajoDao(): DhtItinTrabajoDao
 
     companion object{
 
