@@ -29,3 +29,30 @@ data class DhtItinTrabajo (
     @ColumnInfo(name = "id_asignacion_movil") var idAsignacionMovil:String,
     @ColumnInfo(name = "id_asignacion_usuario") var idAsignacionUsuario:String
     )
+
+/*
+*  Descripcion de datos
+*
+* ix_itinerario_trabajo >> Identificador unico del itinerario de trabajo
+* id_mes >> Identificador del mes de trabajo
+* es_itinerario_trabajo >> Estado del itinerario de trabajo
+* ti_itinerario_trabajo >> Tipologia del itinerario de trabajo
+* fe_generacion >> Fecha de generacion del itinerario de trabajo
+* fe_programa >> Fecha de programacion del itinerario de trabajo
+* fe_ejecucion >> Fecha de ejecucion del itinerario de trabajo
+* fh_apertura >> Fecha y hora de la apertura del itinerario
+* fh_cierre >> Fecha y hora del cierre del itinerario
+* cc_inmuebles >> Cantidad de inmuebles incluidos en el itinerario
+* cc_contratos >> Cantidad de contratos incluidos en el itinerario
+* cc_servicios >> Cantidad de servicios incluidos en el itinerario
+* cc_acciones_asignadas >> Cantidad de acciones asignadas en el itinerario
+* cc_acciones_ejecutadas >> Cantidad de acciones ejecutadas en el itinerario
+* cc_acciones_fallidas >> Cantidad de acciones fallidas en el itinerario
+* cc_acciones_anomalas >> Cantidad de acciones anomalas en el itinerario
+* cc_acciones_correctas >> Cantidad de acciones correctas en el itinerario
+* fh_asignacion >> Fecha y hora de asignacion del itinerario al movil
+* fh_recepcion >> Fecha y hora de la recepcion del itinerario
+* id_asigancion_movil >> Identificador del equipo movil al que se asigno el itinerario
+* id_asignacion_usuario >> Identificador del usuario al que se le asigno el itinerario
+*
+*/
