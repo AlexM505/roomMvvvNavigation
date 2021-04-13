@@ -11,8 +11,11 @@ interface DhtItinTrabajoDao {
     fun getAllItinTrabajo(): LiveData<List<DhtItinTrabajo>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertItinerario(itinerarioTrabajo: DhtItinTrabajo)
+    suspend fun insertItinerario(vararg itinerarioTrabajo: DhtItinTrabajo)
 
     @Update
     suspend fun updateItinerario(itinerarioTrabajo: DhtItinTrabajo)
+
+    @Query("DELETE FROM dht_itin_trabajo")
+    suspend fun deleteAll()
 }
