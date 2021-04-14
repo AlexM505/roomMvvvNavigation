@@ -11,26 +11,42 @@ import com.tda.facsitio.R
 import com.tda.facsitio.data.db.FactsitioDatabase
 import com.tda.facsitio.data.db.rePopulateDb
 import com.tda.facsitio.data.model.DhtItinTrabajo
+import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
+import com.tda.facsitio.ui.SharedViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 class WorkItineraryFragment : Fragment() {
 
-    //private val mWorkItineraryViewModel: WorkItineraryViewModel by viewModels()
+    private var _binding: FragmentWorkItineraryBinding?= null
+    private val binding get() = _binding!!
+
+    private val mWorkItineraryViewModel: WorkItineraryViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_work_itinerary, container, false)
+        _binding = FragmentWorkItineraryBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mSharedViewModel = mSharedViewModel
 
         lifecycleScope.launch(Dispatchers.IO) {
             rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
         }
 
-        return view
+        val list = listOf<DhtItinTrabajo>()
+        mSharedViewModel.checkIfDbEmpty(list)
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

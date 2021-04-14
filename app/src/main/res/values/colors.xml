@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primaryColor">#0277BD</color>
-    <color name="primaryLightColor">#CBDCEA</color>
-    <color name="primaryDarkColor">#046BA8</color>
-    <color name="secondaryColor">#54e346</color>
-    <color name="secondaryLightColor">#6CDC61</color>
-    <color name="secondaryDarkColor">#45CA38</color>
+    <color name="primaryColor">#00B871</color>
+    <color name="primaryLightColor">#59BD97</color>
+    <color name="primaryDarkColor">#028C57</color>
+    <color name="secondaryColor">#007DE1</color>
+    <color name="secondaryLightColor">#63B1EF</color>
+    <color name="secondaryDarkColor">#025393</color>
     <color name="primaryTextColor">#3B3E3E</color>
     <color name="secondaryTextColor">#302F2F</color>
     <color name="white">#FFFF</color>
     <color name="black">#FF000000</color>
-    <color name="lightGray">#E6E6E6</color>
+    <color name="lightGray">#EAEAEA</color>
     <color name="darkGray">#7E7D7D</color>
 
 <!--    Bottom bar-->
     <color name="bgBottombarColor">@color/white</color>
-    <color name="indicatorColor">#360277BD</color>
+    <color name="indicatorColor">#B5A4FAD9</color>
     <color name="itemColor">#BBC3C8</color>
 </resources>
