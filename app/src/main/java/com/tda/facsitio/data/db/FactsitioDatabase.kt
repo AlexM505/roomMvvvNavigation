@@ -4,17 +4,19 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.tda.facsitio.data.dao.DhtItinTrabajoDao
+import com.tda.facsitio.data.dao.DhtItinTrabajoServicioDao
 import com.tda.facsitio.data.model.DhtItinTrabajo
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.tda.facsitio.data.model.DhtItinTrabajoServicio
 
-@Database(version = 1, exportSchema = false, entities = [DhtItinTrabajo::class])
+@Database(
+    version = 1, exportSchema = false,
+    entities = [DhtItinTrabajo::class, DhtItinTrabajoServicio::class]
+)
 abstract class FactsitioDatabase : RoomDatabase() {
 
     abstract fun dhtItinTrabajoDao(): DhtItinTrabajoDao
+    abstract fun dhtItinTrabajoServicioDao(): DhtItinTrabajoServicioDao
 
     companion object{
 

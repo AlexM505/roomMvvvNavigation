@@ -21,6 +21,7 @@ data class DhtItinTrabajoServicio (
     @ColumnInfo(name = "fh_inicio") var fhInicio : String,
     @ColumnInfo(name = "fh_final") var fhFinal : String,
     @ColumnInfo(name = "cc_acciones_asignadas") var ccAccionesAsignadas : String,
+    @ColumnInfo(name = "es_servicio_trabajo") var esServicioTrabajo : String,
     @ColumnInfo(name = "geo_coordenadas") var geoCoordenadas : String
         )
 
