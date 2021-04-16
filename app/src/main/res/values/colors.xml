@@ -17,4 +17,6 @@
     <color name="bgBottombarColor">@color/white</color>
     <color name="indicatorColor">#B5A4FAD9</color>
     <color name="itemColor">#BBC3C8</color>
+
+    <color name="red">#F44336</color>
 </resources>

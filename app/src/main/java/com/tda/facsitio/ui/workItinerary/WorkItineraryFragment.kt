@@ -13,6 +13,7 @@ import com.tda.facsitio.data.db.rePopulateDb
 import com.tda.facsitio.data.model.DhtItinTrabajo
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
 import com.tda.facsitio.ui.SharedViewModel
+import com.tda.facsitio.utils.LoadingDialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -24,6 +25,12 @@ class WorkItineraryFragment : Fragment() {
 
     private val mWorkItineraryViewModel: WorkItineraryViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
+
+    private val loadingDialog by lazy {
+        LoadingDialog(requireContext()).apply {
+            lifecycle.addObserver(this)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
