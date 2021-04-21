@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.R
 import com.tda.facsitio.data.db.FactsitioDatabase
 import com.tda.facsitio.data.db.rePopulateDb
@@ -14,6 +15,7 @@ import com.tda.facsitio.data.model.DhtItinTrabajo
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
 import com.tda.facsitio.ui.SharedViewModel
 import com.tda.facsitio.utils.LoadingDialog
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -25,6 +27,7 @@ class WorkItineraryFragment : Fragment() {
 
     private val mWorkItineraryViewModel: WorkItineraryViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
+    private val workItinAdapter : WorkItineraryAdapter by lazy { WorkItineraryAdapter() }
 
     private val loadingDialog by lazy {
         LoadingDialog(requireContext()).apply {
@@ -45,10 +48,29 @@ class WorkItineraryFragment : Fragment() {
             rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
         }
 
-        val list = listOf<DhtItinTrabajo>()
-        mSharedViewModel.checkIfDbEmpty(list)
+        setupListOfItin()
+        observeListOfItin()
 
         return binding.root
+    }
+
+    private fun setupListOfItin(){
+        val recyclerView = binding.rvWorkItineraries
+        recyclerView.adapter = workItinAdapter
+        recyclerView.layoutManager = LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.VERTICAL,
+                false)
+        recyclerView.itemAnimator = SlideInUpAnimator().apply { addDuration = 300 }
+    }
+
+    private fun observeListOfItin(){
+        loadingDialog.toggle(true)
+        mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner,{ listData ->
+            mSharedViewModel.checkIfDbEmpty(listData)
+            workItinAdapter.setData(listData)
+            loadingDialog.toggle(false)
+        })
     }
 
     override fun onDestroyView() {

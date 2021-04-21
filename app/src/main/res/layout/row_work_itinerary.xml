@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="itinTrabajoData"
+            type="com.tda.facsitio.data.model.DhtItinTrabajo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,6 +17,10 @@
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
             android:layout_height="170dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:clickable="true"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="6dp"
             app:cardElevation="2dp"
@@ -40,7 +46,7 @@
                         android:id="@+id/tvEsItin"
                         android:layout_width="50dp"
                         android:layout_height="wrap_content"
-                        android:text="Estado"
+                        android:text="@{itinTrabajoData.esItinerarioTrabajo}"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:fontFamily="@font/ubuntu_bold"
@@ -89,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     app:layout_constraintStart_toStartOf="@+id/tvCentroTxt"
                     app:layout_constraintTop_toBottomOf="@+id/tvCentroTxt">
 
@@ -116,8 +122,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintStart_toEndOf="@+id/llRutaItinTxt"
                     app:layout_constraintTop_toBottomOf="@+id/tvCentroTxt">
 
@@ -178,7 +184,7 @@
                         android:id="@+id/tvServicioPorTrabajar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="100"
+                        android:convertIntAndSetText="@{itinTrabajoData.ccServicios}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:textColor="@color/secondaryTextColor"
                         android:textSize="14sp"/>
@@ -187,8 +193,8 @@
                         android:id="@+id/tvServiciosTrabajados"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="12"
+                        android:layout_marginTop="2dp"
+                        android:convertIntAndSetText="@{itinTrabajoData.ccContratos}"
                         android:fontFamily="@font/ubuntu_regular"
                         android:textColor="@color/secondaryTextColor"
                         android:textSize="14sp"/>
@@ -208,15 +214,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubuntu_regular"
-                        android:text="suministros por trabajar"
+                        android:text="servicios"
                         android:textColor="@color/secondaryTextColor"
                         android:textSize="14sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="suministros trabajados"
+                        android:layout_marginTop="2dp"
+                        android:text="contratos"
                         android:fontFamily="@font/ubuntu_regular"
                         android:textColor="@color/secondaryTextColor"
                         android:textSize="14sp"/>
@@ -232,7 +238,7 @@
                     android:fontFamily="@font/ubuntu_bold"
                     android:text="02/2021"
                     android:textColor="@color/secondaryTextColor"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

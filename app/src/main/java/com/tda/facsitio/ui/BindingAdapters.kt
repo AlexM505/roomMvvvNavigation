@@ -1,6 +1,7 @@
 package com.tda.facsitio.ui
 
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 
@@ -15,6 +16,12 @@ class BindingAdapters {
                 true -> view.visibility = View.VISIBLE
                 false -> view.visibility = View.INVISIBLE
             }
+        }
+
+        @BindingAdapter("android:convertIntAndSetText")
+        @JvmStatic
+        fun convertIntAndSetText(view: TextView, data: Int){
+            view.text = data.toString()
         }
     }
 }
