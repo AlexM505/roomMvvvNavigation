@@ -80,4 +80,6 @@ dependencies {
 
     //Recyclerview Animator
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
+    implementation 'androidx.preference:preference-ktx:1.1.1'
 }

@@ -8,15 +8,22 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.tda.facsitio.R
+import com.tda.facsitio.utils.MyPreferencesUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
+    private lateinit var preferences: MyPreferencesUtil
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preferences = MyPreferencesUtil(this)
+        if(preferences.loadDarkModeState())
+            setTheme(R.style.DarkTheme)
+        else
+            setTheme(R.style.Theme_Facsitio)
         setContentView(R.layout.activity_main)
         
         navController = findNavController(R.id.nav_host_fragment)

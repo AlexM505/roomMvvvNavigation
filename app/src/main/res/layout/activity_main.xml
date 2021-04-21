@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/bgColor"
     tools:context=".ui.MainActivity">
 
     <fragment
@@ -26,12 +27,12 @@
         android:layout_marginStart="6dp"
         android:layout_marginEnd="6dp"
         android:layout_marginBottom="6dp"
-        app:backgroundColor="@color/bgBottombarColor"
+        app:backgroundColor="?attr/bgBottombarColor"
         app:textColor="@color/primaryColor"
         app:textSize="12sp"
         app:iconSize="24dp"
         app:itemFontFamily="@font/ubuntu_bold"
-        app:indicatorColor="@color/indicatorColor"
+        app:indicatorColor="?attr/indicatorColor"
         app:indicatorRadius="10dp"
         app:sideMargins="8dp"
         app:itemPadding="8dp"

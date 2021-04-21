@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/bgColor"
     tools:context=".ui.auth.LoginActivity">
 
     <androidx.cardview.widget.CardView
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        app:cardBackgroundColor="@color/white"
+        app:cardBackgroundColor="?attr/cardBgColor"
         app:cardCornerRadius="6dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
@@ -43,7 +44,7 @@
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/ubuntu_bold"
                 android:text="Bienvenido"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="?attr/primaryTextColor"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu_medium"
                     android:text="Usuario"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
 
                 <EditText
@@ -79,10 +80,11 @@
                     android:background="@drawable/custom_input"
                     android:fontFamily="@font/ubuntu_medium"
                     android:hint="AlxD505"
+                    android:textColorHint="?attr/hintTextColor"
                     android:inputType="text"
                     android:maxLines="1"
                     android:ems="10"
-                    android:textColor="@color/secondaryTextColor"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -104,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu_medium"
                     android:text="Contraseña"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
 
                 <EditText
@@ -116,9 +118,10 @@
                     android:background="@drawable/custom_input"
                     android:fontFamily="@font/ubuntu_medium"
                     android:hint="123456"
+                    android:textColorHint="?attr/hintTextColor"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textColor="@color/secondaryTextColor"
+                    android:textColor="?attr/secondaryTextColor"
                     android:textSize="14sp" />
             </LinearLayout>
 

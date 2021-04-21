@@ -8,6 +8,25 @@
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
 
+        <item name="bgColor">#F8F8F8</item>
+        <item name="cardBgColor">#FFFF</item>
+        <item name="primaryTextColor">#3B3E3E</item>
+        <item name="secondaryTextColor">#302F2F</item>
+        <item name="hintTextColor">#aaa</item>
+        <item name="bgBottombarColor">#FFFF</item>
+        <item name="indicatorColor">#B5A4FAD9</item>
+        <item name="itemColor">#BBC3C8</item>
+    </style>
+
+    <style name="DarkTheme" parent="Theme.Facsitio">
+        <item name="bgColor">#30313e</item>
+        <item name="cardBgColor">#252630</item>
+        <item name="primaryTextColor">#FFFF</item>
+        <item name="secondaryTextColor">#E1E1E1</item>
+        <item name="hintTextColor">#aaa</item>
+        <item name="bgBottombarColor">#252630</item>
+        <item name="indicatorColor">#2AFFFFFF</item>
+        <item name="itemColor">#BBC3C8</item>
     </style>
 
 </resources>

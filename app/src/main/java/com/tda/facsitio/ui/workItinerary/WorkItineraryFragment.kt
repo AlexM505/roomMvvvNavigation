@@ -15,6 +15,7 @@ import com.tda.facsitio.data.model.DhtItinTrabajo
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
 import com.tda.facsitio.ui.SharedViewModel
 import com.tda.facsitio.utils.LoadingDialog
+import com.tda.facsitio.utils.MyPreferencesUtil
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,7 +40,6 @@ class WorkItineraryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentWorkItineraryBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
@@ -65,11 +65,9 @@ class WorkItineraryFragment : Fragment() {
     }
 
     private fun observeListOfItin(){
-        loadingDialog.toggle(true)
         mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner,{ listData ->
             mSharedViewModel.checkIfDbEmpty(listData)
             workItinAdapter.setData(listData)
-            loadingDialog.toggle(false)
         })
     }
 
