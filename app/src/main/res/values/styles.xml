@@ -3,7 +3,6 @@
 
     <!-- Base application theme. -->
     <style name="Theme.Facsitio" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
@@ -19,6 +18,10 @@
     </style>
 
     <style name="DarkTheme" parent="Theme.Facsitio">
+        <item name="colorPrimary">#252630</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+
         <item name="bgColor">#30313e</item>
         <item name="cardBgColor">#252630</item>
         <item name="primaryTextColor">#FFFF</item>

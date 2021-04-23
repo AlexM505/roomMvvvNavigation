@@ -6,7 +6,7 @@
     <data>
         <variable
             name="mSharedViewModel"
-            type="com.tda.facsitio.ui.SharedViewModel" />
+            type="com.tda.facsitio.ui.zhelp.SharedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

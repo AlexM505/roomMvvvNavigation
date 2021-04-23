@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tda.facsitio.R
 import com.tda.facsitio.data.db.FactsitioDatabase
 import com.tda.facsitio.data.db.rePopulateDb
-import com.tda.facsitio.data.model.DhtItinTrabajo
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
-import com.tda.facsitio.ui.SharedViewModel
+import com.tda.facsitio.ui.zhelp.SharedViewModel
 import com.tda.facsitio.utils.LoadingDialog
-import com.tda.facsitio.utils.MyPreferencesUtil
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
@@ -36,6 +34,8 @@ class WorkItineraryFragment : Fragment() {
         }
     }
 
+    private val scope = CoroutineScope(Job() + Dispatchers.IO)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +44,7 @@ class WorkItineraryFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
 
-        lifecycleScope.launch(Dispatchers.IO) {
+        scope.launch {
             rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
         }
 

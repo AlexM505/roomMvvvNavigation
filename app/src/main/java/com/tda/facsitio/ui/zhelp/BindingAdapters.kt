@@ -1,9 +1,13 @@
-package com.tda.facsitio.ui
+package com.tda.facsitio.ui.zhelp
 
 import android.view.View
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.findNavController
+import com.tda.facsitio.data.model.DhtItinTrabajo
+import com.tda.facsitio.ui.workItinerary.WorkItineraryFragmentDirections
 
 class BindingAdapters {
 
@@ -22,6 +26,15 @@ class BindingAdapters {
         @JvmStatic
         fun convertIntAndSetText(view: TextView, data: Int){
             view.text = data.toString()
+        }
+
+        @BindingAdapter("android:navigateAndSendDataToServicesFragment")
+        @JvmStatic
+        fun navigateAndSendDataToServicesFragment(view: CardView, currentItem: DhtItinTrabajo){
+            view.setOnClickListener {
+                val action = WorkItineraryFragmentDirections.actionNavigationWorkItineraryToServicesFragment(currentItem)
+                view.findNavController().navigate(action)
+            }
         }
     }
 }
