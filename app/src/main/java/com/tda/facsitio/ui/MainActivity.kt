@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         else
             setTheme(R.style.Theme_Facsitio)
         setContentView(R.layout.activity_main)
+
+        //supportActionBar?.hide()
         
         navController = findNavController(R.id.nav_host_fragment)
 

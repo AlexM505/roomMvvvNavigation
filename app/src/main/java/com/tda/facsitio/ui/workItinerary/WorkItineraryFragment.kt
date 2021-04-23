@@ -1,5 +1,6 @@
 package com.tda.facsitio.ui.workItinerary
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,14 +45,18 @@ class WorkItineraryFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         scope.launch {
             rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
         }
 
         setupListOfItin()
         observeListOfItin()
-
-        return binding.root
     }
 
     private fun setupListOfItin(){
@@ -74,6 +79,17 @@ class WorkItineraryFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        System.out.println("Pasamos por onDestroyView")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        System.out.println("Pasamos por onPause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        System.out.println("Pasamos por onDestroy")
     }
 
 }
