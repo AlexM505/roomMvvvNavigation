@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_work_itinerary" >
         <action
             android:id="@+id/action_navigation_workItinerary_to_servicesFragment"
-            app:destination="@id/servicesFragment" />
+            app:destination="@id/servicesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_setting"
@@ -22,7 +26,7 @@
     <fragment
         android:id="@+id/servicesFragment"
         android:name="com.tda.facsitio.ui.services.ServicesFragment"
-        android:label="fragment_services"
+        android:label="@string/servicios"
         tools:layout="@layout/fragment_services" >
         <action
             android:id="@+id/action_servicesFragment_to_navigation_workItinerary"
