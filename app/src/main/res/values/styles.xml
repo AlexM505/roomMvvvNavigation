@@ -13,8 +13,7 @@
         <item name="secondaryTextColor">#302F2F</item>
         <item name="hintTextColor">#aaa</item>
         <item name="bgBottombarColor">#FFFF</item>
-        <item name="indicatorColor">#B5A4FAD9</item>
-        <item name="itemColor">#BBC3C8</item>
+        <item name="indicatorColor">@color/primaryColor</item>
     </style>
 
     <style name="DarkTheme" parent="Theme.Facsitio">
@@ -28,8 +27,7 @@
         <item name="secondaryTextColor">#E1E1E1</item>
         <item name="hintTextColor">#aaa</item>
         <item name="bgBottombarColor">#252630</item>
-        <item name="indicatorColor">#2AFFFFFF</item>
-        <item name="itemColor">#BBC3C8</item>
+        <item name="indicatorColor">@color/primaryColor</item>
     </style>
 
 </resources>

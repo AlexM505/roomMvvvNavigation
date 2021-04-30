@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/workitinerary"
+    app:startDestination="@id/workItineraryScreen">
+
+    <fragment
+        android:id="@+id/workItineraryScreen"
+        android:name="com.tda.facsitio.ui.workItinerary.WorkItineraryFragment"
+        android:label="WorkItineraryFragment"
+        tools:layout="@layout/fragment_work_itinerary">
+        <action
+            android:id="@+id/action_workItineraryScreen_to_servicesScreen"
+            app:destination="@id/servicesScreen"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/servicesScreen"
+        android:name="com.tda.facsitio.ui.services.ServicesFragment"
+        android:label="ServicesFragment"
+        tools:layout="@layout/fragment_services">
+        <argument
+            android:name="currentItin"
+            app:argType="com.tda.facsitio.data.model.DhtItinTrabajo" />
+        <action
+            android:id="@+id/action_servicesScreen_to_workItineraryScreen"
+            app:destination="@id/workItineraryScreen" />
+    </fragment>
+</navigation>

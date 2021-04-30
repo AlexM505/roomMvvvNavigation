@@ -51,9 +51,9 @@ class WorkItineraryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        scope.launch {
-            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
-        }
+//        scope.launch {
+//            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
+//        }
 
         setupListOfItin()
         observeListOfItin()

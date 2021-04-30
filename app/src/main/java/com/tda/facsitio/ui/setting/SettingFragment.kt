@@ -29,7 +29,7 @@ class SettingFragment : Fragment() {
 
         loadUi()
 
-        binding.sOnOffDark.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.sOnOffDark.setOnCheckedChangeListener { _, isChecked ->
             if(isChecked){
                 preferences.setDarkModeState(true)
                 restartApplication()

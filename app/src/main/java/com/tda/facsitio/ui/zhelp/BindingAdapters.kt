@@ -32,7 +32,7 @@ class BindingAdapters {
         @JvmStatic
         fun navigateAndSendDataToServicesFragment(view: CardView, currentItem: DhtItinTrabajo){
             view.setOnClickListener {
-                val action = WorkItineraryFragmentDirections.actionNavigationWorkItineraryToServicesFragment(currentItem)
+                val action = WorkItineraryFragmentDirections.actionWorkItineraryScreenToServicesScreen(currentItem)
                 view.findNavController().navigate(action)
             }
         }

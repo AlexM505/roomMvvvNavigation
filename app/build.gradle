@@ -54,6 +54,7 @@ dependencies {
     //Navigation component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'androidx.navigation:navigation-runtime-ktx:2.3.5'
 
     //Room components
     implementation 'androidx.room:room-runtime:2.3.0'
@@ -75,11 +76,9 @@ dependencies {
     kapt 'com.android.databinding:compiler:3.2.0-alpha10'
     kapt 'androidx.databinding:databinding-common:4.1.3'
 
-    //BottomBar
-    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
-
     //Recyclerview Animator
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 
+    //Shared Preference
     implementation 'androidx.preference:preference-ktx:1.1.1'
 }

@@ -8,6 +8,5 @@
         <attr name="hintTextColor" format="color"/>
         <attr name="bgBottombarColor" format="color"/>
         <attr name="indicatorColor" format="color"/>
-        <attr name="itemColor" format="color"/>
     </declare-styleable>
 </resources>
