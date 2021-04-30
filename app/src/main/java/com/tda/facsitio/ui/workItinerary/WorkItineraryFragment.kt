@@ -14,6 +14,7 @@ import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
 import com.tda.facsitio.ui.zhelp.SharedViewModel
 import com.tda.facsitio.utils.LoadingDialog
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -50,7 +51,7 @@ class WorkItineraryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        requireActivity().bottom_nav.visibility = View.VISIBLE
 //        scope.launch {
 //            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
 //        }

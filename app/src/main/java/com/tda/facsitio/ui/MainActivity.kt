@@ -21,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private var currentNavController: LiveData<NavController>? = null
     private lateinit var preferences: MyPreferencesUtil
 
+    lateinit var bottomNavigationView:BottomNavigationView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preferences = MyPreferencesUtil(this)
@@ -43,7 +45,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigationBar() {
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        //val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigationView = findViewById(R.id.bottom_nav)
 
         val navGraphIds = listOf(R.navigation.workitinerary, R.navigation.setting)
 
