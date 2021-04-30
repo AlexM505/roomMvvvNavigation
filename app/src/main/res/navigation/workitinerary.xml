@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/workItineraryScreen"
         android:name="com.tda.facsitio.ui.workItinerary.WorkItineraryFragment"
-        android:label="WorkItineraryFragment"
+        android:label="@string/itinerarios_de_trabajo"
         tools:layout="@layout/fragment_work_itinerary">
         <action
             android:id="@+id/action_workItineraryScreen_to_servicesScreen"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/servicesScreen"
         android:name="com.tda.facsitio.ui.services.ServicesFragment"
-        android:label="ServicesFragment"
+        android:label="@string/servicios"
         tools:layout="@layout/fragment_services">
         <argument
             android:name="currentItin"

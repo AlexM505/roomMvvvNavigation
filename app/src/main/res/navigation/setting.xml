@@ -8,6 +8,6 @@
     <fragment
         android:id="@+id/settingScreen"
         android:name="com.tda.facsitio.ui.setting.SettingFragment"
-        android:label="SettingFragment"
+        android:label="@string/configuracion"
         tools:layout="@layout/fragment_setting"/>
 </navigation>

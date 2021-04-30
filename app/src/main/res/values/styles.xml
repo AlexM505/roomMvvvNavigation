@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <!-- Base application theme. -->
     <style name="Theme.Facsitio" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -28,6 +28,10 @@
         <item name="hintTextColor">#aaa</item>
         <item name="bgBottombarColor">#252630</item>
         <item name="indicatorColor">@color/primaryColor</item>
+    </style>
+
+    <style name="BottomNavigationViewTextStyle">
+        <item name="android:fontFamily">@font/ubuntu_regular</item>
     </style>
 
 </resources>
