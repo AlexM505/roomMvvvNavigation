@@ -28,6 +28,12 @@ class BindingAdapters {
             view.text = data.toString()
         }
 
+        @BindingAdapter("android:convertLongAndSetText")
+        @JvmStatic
+        fun convertLongAndSetText(view: TextView, data: Long){
+            view.text = data.toString()
+        }
+
         @BindingAdapter("android:navigateAndSendDataToServicesFragment")
         @JvmStatic
         fun navigateAndSendDataToServicesFragment(view: CardView, currentItem: DhtItinTrabajo){

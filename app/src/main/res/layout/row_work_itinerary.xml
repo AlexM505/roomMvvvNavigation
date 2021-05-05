@@ -59,11 +59,11 @@
 
                 <ImageView
                     android:id="@+id/ivCheck"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_check_setts"
+                    android:src="@drawable/ic_center_suite"
                     app:layout_constraintStart_toEndOf="@+id/llEsItinIndicador"
                     app:layout_constraintTop_toTopOf="parent" />
 

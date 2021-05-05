@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="136dp"
         android:layout_margin="4dp">
 
         <androidx.cardview.widget.CardView
@@ -47,12 +47,12 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_bubble"
+                    android:src="@drawable/ic_verified"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -63,7 +63,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
                     android:fontFamily="@font/ubuntu_medium"
-                    android:text="Nombre del cliente"
+                    android:text="@{serviceData.referenciaCliente}"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="14sp"
                     android:maxLines="1"
@@ -80,7 +80,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="7654321"
+                    android:convertLongAndSetText="@{serviceData.idServicio}"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -93,7 +93,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:fontFamily="@font/ubuntu_regular"
-                    android:text="Medidor 123456789"
+                    android:text="@{`Med`+ serviceData.referenciaMedidor}"
                     android:textColor="?attr/secondaryTextColor"
                     android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -101,11 +101,11 @@
 
                 <ImageView
                     android:id="@+id/ivLocation"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_my_location"
+                    android:src="@drawable/ic_location"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvMedidor" />
 
@@ -115,12 +115,13 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/ubuntu_regular"
-                    android:text="textooo textoooo textoooooo direccion del cliente, referencia xyz de donde esta ubicado la casita, texto de ejemplo para prueba de longitud"
+                    android:maxLines="2"
+                    android:text="@{serviceData.referenciaDireccion}"
                     android:textColor="?attr/secondaryTextColor"
                     android:textSize="12sp"
-                    android:maxLines="2"
-                    android:ellipsize="end"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivLocation"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/ivLocation"
                     app:layout_constraintTop_toBottomOf="@+id/tvMedidor" />
