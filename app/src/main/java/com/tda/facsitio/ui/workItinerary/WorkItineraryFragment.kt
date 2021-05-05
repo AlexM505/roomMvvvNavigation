@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
+import com.tda.facsitio.ui.services.ServicesFragment
 import com.tda.facsitio.ui.zhelp.SharedViewModel
+import com.tda.facsitio.utils.MyPreferencesUtil
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +27,7 @@ class WorkItineraryFragment : Fragment() {
     private val mSharedViewModel: SharedViewModel by viewModels()
     private val workItinAdapter : WorkItineraryAdapter by lazy { WorkItineraryAdapter() }
 
+    private lateinit var preferences: MyPreferencesUtil
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
 
     override fun onCreateView(
@@ -35,12 +38,16 @@ class WorkItineraryFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
 
+        preferences = MyPreferencesUtil(requireContext())
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mSharedViewModel.fadeAnim(requireActivity().bottom_nav)
+
+        if (preferences.loadTagFragment().equals(ServicesFragment.TAG_SCREEN))
+            mSharedViewModel.fadeAnim(requireActivity().bottom_nav)
 //        scope.launch {
 //            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
 //        }

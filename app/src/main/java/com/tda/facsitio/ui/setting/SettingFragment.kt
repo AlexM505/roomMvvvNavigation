@@ -6,14 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.tda.facsitio.R
 import com.tda.facsitio.databinding.FragmentSettingBinding
-import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
 import com.tda.facsitio.ui.MainActivity
 import com.tda.facsitio.utils.MyPreferencesUtil
 
 class SettingFragment : Fragment() {
 
+    companion object{
+        const val TAG_SCREEN = "SETTING_SCREEN"
+    }
     private var _binding: FragmentSettingBinding?= null
     private val binding get() = _binding!!
 
@@ -44,6 +45,7 @@ class SettingFragment : Fragment() {
 
     private fun loadUi(){
         preferences = MyPreferencesUtil(requireContext())
+        preferences.setTagFragment(TAG_SCREEN)
         if(preferences.loadDarkModeState()){
             binding.sOnOffDark.isChecked = true
         }

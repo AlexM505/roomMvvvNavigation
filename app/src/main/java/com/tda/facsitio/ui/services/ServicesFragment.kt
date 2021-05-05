@@ -12,15 +12,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.data.model.DhtItinTrabajoServicio
 import com.tda.facsitio.databinding.FragmentServicesBinding
 import com.tda.facsitio.ui.zhelp.SharedViewModel
+import com.tda.facsitio.utils.MyPreferencesUtil
 import com.tda.facsitio.utils.Status
-import jp.wasabeef.recyclerview.animators.SlideInDownAnimator
-import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ServicesFragment : Fragment() {
 
+    companion object{
+        const val TAG_SCREEN = "SERVICES_SCREEN"
+    }
     private var _binding : FragmentServicesBinding?= null
     private val binding get() = _binding!!
 
@@ -28,6 +29,8 @@ class ServicesFragment : Fragment() {
     private val mSharedViewModel : SharedViewModel by viewModels()
     private val mServicesViewModel : ServicesViewModel by viewModels()
     private val servicesAdapter : ServicesAdapter by lazy {ServicesAdapter()}
+
+    private lateinit var preferences: MyPreferencesUtil
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +40,9 @@ class ServicesFragment : Fragment() {
         _binding = FragmentServicesBinding.inflate(inflater,container,false)
         binding.lifecycleOwner = this
         binding.args = servicesFragmentArgs
+
+        preferences = MyPreferencesUtil(requireContext())
+        preferences.setTagFragment(TAG_SCREEN)
 
         return binding.root
     }
