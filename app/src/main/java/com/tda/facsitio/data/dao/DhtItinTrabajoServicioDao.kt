@@ -8,7 +8,7 @@ import com.tda.facsitio.data.model.DhtItinTrabajoServicio
 interface DhtItinTrabajoServicioDao {
 
     @Query("SELECT * FROM dht_itin_trabajo_servicio WHERE ix_itinerario_trabajo = :itinerario ORDER BY id_servicio ASC")
-    fun getAllServiciosByItin(itinerario : String): LiveData<List<DhtItinTrabajoServicio>>
+    suspend fun getAllServiciosByItin(itinerario : String): List<DhtItinTrabajoServicio>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertServicio(vararg itinerarioTrabajo: DhtItinTrabajoServicio)

@@ -51,7 +51,7 @@ class WorkItineraryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().bottom_nav.visibility = View.VISIBLE
+        mSharedViewModel.fadeAnim(requireActivity().bottom_nav)
 //        scope.launch {
 //            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
 //        }
