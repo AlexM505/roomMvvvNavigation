@@ -1,15 +1,14 @@
 package com.tda.facsitio.ui.services
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.tda.facsitio.data.model.DhtItinTrabajoServicio
+import com.tda.facsitio.R
 import com.tda.facsitio.databinding.FragmentServicesBinding
 import com.tda.facsitio.ui.zhelp.SharedViewModel
 import com.tda.facsitio.utils.MyPreferencesUtil
@@ -17,7 +16,7 @@ import com.tda.facsitio.utils.Status
 import jp.wasabeef.recyclerview.animators.SlideInRightAnimator
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ServicesFragment : Fragment() {
+class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     companion object{
         const val TAG_SCREEN = "SERVICES_SCREEN"
@@ -36,14 +35,13 @@ class ServicesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentServicesBinding.inflate(inflater,container,false)
         binding.lifecycleOwner = this
         binding.args = servicesFragmentArgs
 
         preferences = MyPreferencesUtil(requireContext())
         preferences.setTagFragment(TAG_SCREEN)
-
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -72,7 +70,7 @@ class ServicesFragment : Fragment() {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    it.data?.let { servicios -> renderList(servicios) }
+                    it.data?.let { servicios -> servicesAdapter.setData(servicios) }
                 }
                 Status.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -86,13 +84,41 @@ class ServicesFragment : Fragment() {
         })
     }
 
-    private fun renderList(servicios:List<DhtItinTrabajoServicio>){
-        servicesAdapter.setData(servicios)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_services, menu)
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if(query != null)
+            searchThroughDatabase(query)
+
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText != null)
+            searchThroughDatabase(newText)
+
+        return true
+    }
+
+    private fun searchThroughDatabase(query: String) {
+        var searchQuery = query
+        searchQuery = "%$searchQuery%"
+        mServicesViewModel.searchServiciosDb(searchQuery).observe(this, { list ->
+            list?.let {
+                servicesAdapter.setData(it)
+            }
+        })
     }
 
 }

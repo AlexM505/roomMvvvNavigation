@@ -13,4 +13,8 @@ class DhtItinTrabajoServicioRepository(private val dhtItinTrabajoServicioDao: Dh
     suspend fun insertItinerario(dhtItinTrabajoServicio: DhtItinTrabajoServicio){
         dhtItinTrabajoServicioDao.insertServicio(dhtItinTrabajoServicio)
     }
+
+    fun searchServiciosDb(searchQuery: String): LiveData<List<DhtItinTrabajoServicio>>{
+        return dhtItinTrabajoServicioDao.searchServiciosDb(searchQuery)
+    }
 }

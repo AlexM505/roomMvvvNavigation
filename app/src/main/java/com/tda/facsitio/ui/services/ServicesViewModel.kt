@@ -40,4 +40,8 @@ class ServicesViewModel(application: Application) : AndroidViewModel(application
     fun getServiciosByItin() : LiveData<Resource<List<DhtItinTrabajoServicio>>>{
         return serviciosByItin
     }
+
+    fun searchServiciosDb(searchQuery:String): LiveData<List<DhtItinTrabajoServicio>>{
+        return repo.searchServiciosDb(searchQuery)
+    }
 }

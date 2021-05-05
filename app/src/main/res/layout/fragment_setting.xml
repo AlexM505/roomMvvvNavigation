@@ -12,6 +12,15 @@
         android:background="?attr/bgColor"
         tools:context=".ui.setting.SettingFragment">
 
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/ic_bg_screen"
+            android:translationX="-30dp"
+            android:alpha=".7"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
