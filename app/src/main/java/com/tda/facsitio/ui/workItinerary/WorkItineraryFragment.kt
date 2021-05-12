@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.tda.facsitio.data.db.FactsitioDatabase
+import com.tda.facsitio.data.db.rePopulateDb
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
 import com.tda.facsitio.ui.services.ServicesFragment
 import com.tda.facsitio.ui.zhelp.SharedViewModel
@@ -16,10 +18,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 
 class WorkItineraryFragment : Fragment() {
 
+    companion object{
+        const val TAG_SCREEN = "WORK_SCREEN"
+    }
     private var _binding: FragmentWorkItineraryBinding?= null
     private val binding get() = _binding!!
 
@@ -39,15 +45,19 @@ class WorkItineraryFragment : Fragment() {
         binding.mSharedViewModel = mSharedViewModel
 
         preferences = MyPreferencesUtil(requireContext())
-
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (preferences.loadTagFragment().equals(ServicesFragment.TAG_SCREEN))
+        if (preferences.loadTagFragment().equals(ServicesFragment.TAG_SCREEN)){
+            preferences.setTagFragment(TAG_SCREEN)
             mSharedViewModel.fadeAnim(requireActivity().bottom_nav)
+        }else{
+            //primera vez que se ejecuta la app , se configura el tag de la vista workItinerary
+            preferences.setTagFragment(TAG_SCREEN)
+        }
+
 //        scope.launch {
 //            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
 //        }

@@ -7,6 +7,8 @@ import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.tda.facsitio.data.model.DhtItinTrabajo
+import com.tda.facsitio.data.model.DhtItinTrabajoServicio
+import com.tda.facsitio.ui.services.ServicesFragmentDirections
 import com.tda.facsitio.ui.workItinerary.WorkItineraryFragmentDirections
 
 class BindingAdapters {
@@ -39,6 +41,15 @@ class BindingAdapters {
         fun navigateAndSendDataToServicesFragment(view: CardView, currentItem: DhtItinTrabajo){
             view.setOnClickListener {
                 val action = WorkItineraryFragmentDirections.actionWorkItineraryScreenToServicesScreen(currentItem)
+                view.findNavController().navigate(action)
+            }
+        }
+
+        @BindingAdapter("android:navigateAndSendDataToDetailFragment")
+        @JvmStatic
+        fun navigateAndSendDataToDetailFragment(view: CardView, currentItem: DhtItinTrabajoServicio){
+            view.setOnClickListener {
+                val action = ServicesFragmentDirections.actionServicesScreenToDetailFragment(currentItem)
                 view.findNavController().navigate(action)
             }
         }

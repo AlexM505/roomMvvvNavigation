@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.R
 import com.tda.facsitio.databinding.FragmentServicesBinding
+import com.tda.facsitio.ui.workItinerary.WorkItineraryFragment
 import com.tda.facsitio.ui.zhelp.SharedViewModel
 import com.tda.facsitio.utils.MyPreferencesUtil
 import com.tda.facsitio.utils.Status
@@ -40,14 +41,16 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.args = servicesFragmentArgs
 
         preferences = MyPreferencesUtil(requireContext())
-        preferences.setTagFragment(TAG_SCREEN)
         setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mSharedViewModel.fadeOutAnim(requireActivity().bottom_nav)
+        if(preferences.loadTagFragment().equals(WorkItineraryFragment.TAG_SCREEN)){
+            preferences.setTagFragment(TAG_SCREEN)
+            mSharedViewModel.fadeOutAnim(requireActivity().bottom_nav)
+        }
 
         setupListServices()
         getListServices()
@@ -64,9 +67,12 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun getListServices(){
+        //Validamos si ya hemos cargados los servicios para no volver hacerlo
+        // Esto hacia que el recycler se volviera animar y se veia mal a nivel visual
+        if(mServicesViewModel.serviciosByItin.value == null)
+            mServicesViewModel.searchServiciosByItin(servicesFragmentArgs.currentItin.ixItinerarioTrabajo)
 
-        mServicesViewModel.searchServiciosByItin(servicesFragmentArgs.currentItin.ixItinerarioTrabajo)
-        mServicesViewModel.getServiciosByItin().observe(viewLifecycleOwner, {
+        mServicesViewModel.serviciosByItin.observe(viewLifecycleOwner, {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE

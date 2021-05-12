@@ -17,7 +17,7 @@ class ServicesViewModel(application: Application) : AndroidViewModel(application
     private val dhtItinTrabajoServicioDao = FactsitioDatabase.getDatabase(application).dhtItinTrabajoServicioDao()
     private val repo : DhtItinTrabajoServicioRepository
 
-    private val serviciosByItin = MutableLiveData<Resource<List<DhtItinTrabajoServicio>>>()
+    private val _serviciosByItin = MutableLiveData<Resource<List<DhtItinTrabajoServicio>>>()
 
     init{
         repo = DhtItinTrabajoServicioRepository(dhtItinTrabajoServicioDao)
@@ -25,21 +25,19 @@ class ServicesViewModel(application: Application) : AndroidViewModel(application
 
     fun searchServiciosByItin(itin : String){
         viewModelScope.launch {
-            serviciosByItin.postValue(Resource.loading(null))
+            _serviciosByItin.postValue(Resource.loading(null))
             try {
                 val servicios = mutableListOf<DhtItinTrabajoServicio>()
                 servicios.addAll(repo.getServiciosByItin(itin) as MutableList<DhtItinTrabajoServicio>)
 
-                serviciosByItin.postValue(Resource.success(servicios))
+                _serviciosByItin.postValue(Resource.success(servicios))
             }catch (e: Exception){
-                serviciosByItin.postValue(Resource.error(e.message?:"Falla en searchServiciosByItin", null))
+                _serviciosByItin.postValue(Resource.error(e.message?:"Falla en searchServiciosByItin", null))
             }
         }
     }
 
-    fun getServiciosByItin() : LiveData<Resource<List<DhtItinTrabajoServicio>>>{
-        return serviciosByItin
-    }
+    val serviciosByItin: LiveData<Resource<List<DhtItinTrabajoServicio>>> = _serviciosByItin
 
     fun searchServiciosDb(searchQuery:String): LiveData<List<DhtItinTrabajoServicio>>{
         return repo.searchServiciosDb(searchQuery)

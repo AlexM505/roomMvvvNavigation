@@ -24,6 +24,7 @@
             app:cardBackgroundColor="?attr/cardBgColor"
             app:cardCornerRadius="6dp"
             app:cardElevation="2dp"
+            android:navigateAndSendDataToDetailFragment="@{serviceData}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

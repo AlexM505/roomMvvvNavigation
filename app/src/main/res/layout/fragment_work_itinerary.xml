@@ -33,6 +33,7 @@
             android:layout_height="170dp"
             android:visibility="invisible"
             android:src="@drawable/ic_empty"
+            android:alpha=".7"
             android:emptyDbItinerarios="@{mSharedViewModel.emptyDb}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
