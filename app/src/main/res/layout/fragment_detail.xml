@@ -14,15 +14,175 @@
         android:layout_height="match_parent"
         tools:context=".ui.serviceDetail.DetailFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="?attr/primaryTextColor"
-            android:text="@{args.currentService.referenciaCliente}"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clBar"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:background="@color/secondaryColor"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/ibBack"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/ic_arrow_back"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/ibForward"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:src="@drawable/ic_arrow_forward"
+                android:tint="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvBarInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="4 de 60"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ibForward"
+                app:layout_constraintStart_toEndOf="@+id/ibBack"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clBar">
+
+            <TextView
+                android:id="@+id/tvReferenciaCliente"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/ubuntu_medium"
+                android:maxLines="2"
+                android:text="@{args.currentService.referenciaCliente}"
+                android:textColor="?attr/primaryTextColor"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Nombre del cliente" />
+
+            <TextView
+                android:id="@+id/tvIdServicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:convertLongAndSetText="@{args.currentService.idServicio}"
+                tools:text="Id servicio"
+                android:textColor="@color/secondaryColor"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReferenciaCliente" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/primaryColor"
+                app:layout_constraintBottom_toBottomOf="@+id/tvIdServicio"
+                app:layout_constraintStart_toEndOf="@+id/tvIdServicio"
+                app:layout_constraintTop_toTopOf="@+id/tvIdServicio" />
+
+            <TextView
+                android:id="@+id/tvIdContrato"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/ubuntu_bold"
+                android:convertLongAndSetText="@{args.currentService.idContrato}"
+                tools:text="Id contrato"
+                android:textColor="@color/secondaryColor"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/tvReferenciaCliente" />
+
+            <TextView
+                android:id="@+id/tvReferenciaMed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/ubuntu_regular"
+                android:text="@{args.currentService.referenciaMedidor}"
+                tools:text="Referencia medidor"
+                android:textColor="?attr/secondaryTextColor"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvIdServicio" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="16dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="8dp"
+                android:background="@color/primaryColor"
+                app:layout_constraintBottom_toBottomOf="@+id/tvReferenciaMed"
+                app:layout_constraintStart_toEndOf="@+id/tvReferenciaMed"
+                app:layout_constraintTop_toTopOf="@+id/tvReferenciaMed" />
+
+            <TextView
+                android:id="@+id/tvReferenciaAcceso"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/ubuntu_regular"
+                android:text="@{args.currentService.referenciaAcceso}"
+                tools:text="Referencia Acceso"
+                android:textColor="?attr/secondaryTextColor"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toBottomOf="@+id/tvIdServicio" />
+
+            <TextView
+                android:id="@+id/tvReferenciaDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/ubuntu_regular"
+                android:maxLines="2"
+                android:text="@{args.currentService.referenciaDireccion}"
+                android:textColor="?attr/secondaryTextColor"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvReferenciaMed"
+                tools:text="Referencia direccion" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
