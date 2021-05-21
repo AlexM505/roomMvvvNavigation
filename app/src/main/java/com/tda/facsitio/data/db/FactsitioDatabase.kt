@@ -6,17 +6,20 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.tda.facsitio.data.dao.DhtItinTrabajoDao
 import com.tda.facsitio.data.dao.DhtItinTrabajoServicioDao
+import com.tda.facsitio.data.dao.DhtMedidoresLecturasDao
 import com.tda.facsitio.data.model.DhtItinTrabajo
 import com.tda.facsitio.data.model.DhtItinTrabajoServicio
+import com.tda.facsitio.data.model.DhtMedidoresLecturas
 
 @Database(
     version = 1, exportSchema = false,
-    entities = [DhtItinTrabajo::class, DhtItinTrabajoServicio::class]
+    entities = [DhtItinTrabajo::class, DhtItinTrabajoServicio::class, DhtMedidoresLecturas::class]
 )
 abstract class FactsitioDatabase : RoomDatabase() {
 
     abstract fun dhtItinTrabajoDao(): DhtItinTrabajoDao
     abstract fun dhtItinTrabajoServicioDao(): DhtItinTrabajoServicioDao
+    abstract fun dhtMedidoresLecturasDao(): DhtMedidoresLecturasDao
 
     companion object{
 

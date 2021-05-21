@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.data.db.FactsitioDatabase
 import com.tda.facsitio.data.db.rePopulateDb
@@ -77,10 +78,10 @@ class WorkItineraryFragment : Fragment() {
     }
 
     private fun observeListOfItin(){
-        mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner,{ listData ->
+        mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner) { listData ->
             mSharedViewModel.checkIfDbEmpty(listData)
             workItinAdapter.setData(listData)
-        })
+        }
     }
 
     override fun onDestroyView() {
