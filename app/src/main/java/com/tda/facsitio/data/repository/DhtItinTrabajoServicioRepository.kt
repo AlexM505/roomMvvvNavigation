@@ -7,7 +7,7 @@ import com.tda.facsitio.data.model.DhtItinTrabajoServicio
 class DhtItinTrabajoServicioRepository(private val dhtItinTrabajoServicioDao: DhtItinTrabajoServicioDao) {
 
     suspend fun getServiciosByItin(itinerario : String): List<DhtItinTrabajoServicio>{
-        return dhtItinTrabajoServicioDao.getAllServiciosByItin(itinerario)
+        return dhtItinTrabajoServicioDao.allServiciosByItin(itinerario)
     }
 
     suspend fun insertItinerario(dhtItinTrabajoServicio: DhtItinTrabajoServicio){

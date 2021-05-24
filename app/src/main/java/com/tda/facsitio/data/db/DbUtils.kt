@@ -1,6 +1,7 @@
 package com.tda.facsitio.data.db
 
 import com.tda.facsitio.data.dao.DhtItinTrabajoDao
+import com.tda.facsitio.data.dao.DhtItinTrabajoServicioAccionDao
 import com.tda.facsitio.data.dao.DhtItinTrabajoServicioDao
 import com.tda.facsitio.data.model.DhtItinTrabajo
 import kotlinx.coroutines.Dispatchers
@@ -14,6 +15,7 @@ suspend fun rePopulateDb(database: FactsitioDatabase?){
         withContext(Dispatchers.IO){
             val dhtItinTrabajoDao : DhtItinTrabajoDao = db.dhtItinTrabajoDao()
             val dhtItinTrabajoServicioDao :DhtItinTrabajoServicioDao = db.dhtItinTrabajoServicioDao()
+            val dhtItinTrabajoServicioAccionDao : DhtItinTrabajoServicioAccionDao = db.dhtItinTrabajoServicioAccionDao()
 
             dhtItinTrabajoDao.deleteAll()
             dhtItinTrabajoServicioDao.deleteAll()
@@ -21,6 +23,12 @@ suspend fun rePopulateDb(database: FactsitioDatabase?){
             dhtItinTrabajoDao.insertValueDefault()
             dhtItinTrabajoServicioDao.insertServicioDefaultUno()
             dhtItinTrabajoServicioDao.insertServicioDefaultDos()
+
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultUno()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultDos()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultTres()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultCuatro()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultCinco()
         }
     }
 

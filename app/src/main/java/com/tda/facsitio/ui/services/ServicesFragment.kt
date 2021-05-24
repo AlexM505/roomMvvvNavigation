@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.R
@@ -28,7 +29,7 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
     private val servicesFragmentArgs by navArgs<ServicesFragmentArgs>()
     private val mSharedViewModel : SharedViewModel by viewModels()
     private val mServicesViewModel : ServicesViewModel by viewModels()
-    private val servicesAdapter : ServicesAdapter by lazy {ServicesAdapter()}
+    private val servicesAdapter : ServicesAdapter by lazy {ServicesAdapter(mServicesViewModel)}
 
     private lateinit var preferences: MyPreferencesUtil
 
@@ -72,7 +73,7 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
         if(mServicesViewModel.serviciosByItin.value == null)
             mServicesViewModel.searchServiciosByItin(servicesFragmentArgs.currentItin.ixItinerarioTrabajo)
 
-        mServicesViewModel.serviciosByItin.observe(viewLifecycleOwner, {
+        mServicesViewModel.serviciosByItin.observe(viewLifecycleOwner) {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
@@ -87,7 +88,7 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             }
-        })
+        }
     }
 
     override fun onDestroyView() {
@@ -120,11 +121,11 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchThroughDatabase(query: String) {
         var searchQuery = query
         searchQuery = "%$searchQuery%"
-        mServicesViewModel.searchServiciosDb(searchQuery).observe(this, { list ->
-            list?.let {
+        mServicesViewModel.searchServiciosDb(searchQuery).observe(this) { list ->
+            list.let {
                 servicesAdapter.setData(it)
             }
-        })
+        }
     }
 
 }

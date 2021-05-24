@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.tda.facsitio.ui.zhelp.SharedViewModel
 import com.tda.facsitio.utils.MyPreferencesUtil
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_work_itinerary.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -36,6 +38,7 @@ class WorkItineraryFragment : Fragment() {
 
     private lateinit var preferences: MyPreferencesUtil
     private val scope = CoroutineScope(Job() + Dispatchers.IO)
+    private var flatSwipe = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,12 +62,9 @@ class WorkItineraryFragment : Fragment() {
             preferences.setTagFragment(TAG_SCREEN)
         }
 
-//        scope.launch {
-//            rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
-//        }
-
         setupListOfItin()
         observeListOfItin()
+        swipeToDownloadItineraries()
     }
 
     private fun setupListOfItin(){
@@ -81,23 +81,32 @@ class WorkItineraryFragment : Fragment() {
         mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner) { listData ->
             mSharedViewModel.checkIfDbEmpty(listData)
             workItinAdapter.setData(listData)
+
+            //Validamos si hay itinerarios cargados para no volver a insertarlos
+            //por unique consraint (cambiar validacion cuando carguemos desde servidor)
+            if(listData.size > 0)
+                flatSwipe = false
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        System.out.println("Pasamos por onDestroyView")
     }
 
-    override fun onPause() {
-        super.onPause()
-        System.out.println("Pasamos por onPause")
-    }
+    private fun swipeToDownloadItineraries(){
+        swipeItin.setOnRefreshListener {
+            if (flatSwipe){
+                scope.launch {
+                    rePopulateDb(FactsitioDatabase.getDatabase(requireContext()))
+                }
+            }else{
+                Toast.makeText(requireContext(),"No hay nada para cargar",Toast.LENGTH_SHORT).show()
+            }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        System.out.println("Pasamos por onDestroy")
+            swipeItin.isRefreshing = false
+        }
+
     }
 
 }

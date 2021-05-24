@@ -15,17 +15,28 @@
         android:background="?attr/bgColor"
         tools:context=".ui.workItinerary.WorkItineraryFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvWorkItineraries"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeItin"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingTop="8dp"
-            android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvWorkItineraries"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ImageView
             android:id="@+id/ivNoData"
