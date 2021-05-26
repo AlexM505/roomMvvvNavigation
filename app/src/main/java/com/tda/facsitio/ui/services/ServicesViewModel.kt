@@ -48,7 +48,7 @@ class ServicesViewModel(application: Application) : AndroidViewModel(application
         return repo.searchServiciosDb(searchQuery)
     }
 
-    fun obtenerAccionesByServicios(ixItinTrabajo: String, servicio: Long) : List<DhtItinTrabajoServicioAccion>{
+    suspend fun obtenerAccionesByServicios(ixItinTrabajo: String, servicio: Long) : List<DhtItinTrabajoServicioAccion>{
         return repoAccion.obtenerAccionesByServicio(ixItinTrabajo,servicio)
     }
 }

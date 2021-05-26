@@ -1,12 +1,15 @@
 package com.tda.facsitio.data.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import kotlinx.android.parcel.Parcelize
 
 @Entity(
     tableName = "dht_itin_trabajo_servicio_accion",
     primaryKeys = ["ix_itinerario_trabajo", "se_itinerario_trabajo", "se_trabajo_accion"]
 )
+@Parcelize
 data class DhtItinTrabajoServicioAccion (
     @ColumnInfo(name = "ix_itinerario_trabajo") var ixItinerarioTrabajo : String,
     @ColumnInfo(name = "se_itinerario_trabajo") var seItinerarioTrabajo : Int,
@@ -21,7 +24,7 @@ data class DhtItinTrabajoServicioAccion (
     @ColumnInfo(name = "fl_accion_fallida") var flAccionFallida : Boolean,
     @ColumnInfo(name = "fl_accion_anomala") var flAccionAnomala : Boolean,
     @ColumnInfo(name = "fl_accion_correcta") var flAccionCorrecta : Boolean
-        )
+        ) : Parcelable
 
 
 /*

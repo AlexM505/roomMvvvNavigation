@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.tda.facsitio.R
 import com.tda.facsitio.data.model.DhtItinTrabajoServicioAccion
-import kotlinx.android.synthetic.main.row_chip_accion.view.*
+import kotlinx.android.synthetic.main.row_chip_action.view.*
 
 class ServiceActionChipAdapter(val context: Context) : RecyclerView.Adapter<ServiceActionChipAdapter.ServiceActionChipViewHolder>() {
 
@@ -18,7 +18,7 @@ class ServiceActionChipAdapter(val context: Context) : RecyclerView.Adapter<Serv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServiceActionChipViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.row_chip_accion,parent,false)
+        val view = LayoutInflater.from(context).inflate(R.layout.row_chip_action,parent,false)
         return ServiceActionChipViewHolder(view)
     }
 

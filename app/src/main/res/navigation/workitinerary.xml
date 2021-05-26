@@ -27,8 +27,8 @@
             android:name="currentItin"
             app:argType="com.tda.facsitio.data.model.DhtItinTrabajo" />
         <action
-            android:id="@+id/action_servicesScreen_to_detailFragment"
-            app:destination="@id/detailScreen"
+            android:id="@+id/action_servicesScreen_to_actionsFragment"
+            app:destination="@id/actionsFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -39,6 +39,15 @@
         android:name="com.tda.facsitio.ui.serviceDetail.DetailFragment"
         android:label="Detalle del servicio"
         tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="currentService"
+            app:argType="com.tda.facsitio.data.model.DhtItinTrabajoServicio" />
+    </fragment>
+    <fragment
+        android:id="@+id/actionsFragment"
+        android:name="com.tda.facsitio.ui.actions.ActionsFragment"
+        android:label="Acciones"
+        tools:layout="@layout/fragment_actions">
         <argument
             android:name="currentService"
             app:argType="com.tda.facsitio.data.model.DhtItinTrabajoServicio" />

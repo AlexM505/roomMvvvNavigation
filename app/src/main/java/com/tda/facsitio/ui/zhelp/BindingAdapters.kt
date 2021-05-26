@@ -45,11 +45,11 @@ class BindingAdapters {
             }
         }
 
-        @BindingAdapter("android:navigateAndSendDataToDetailFragment")
+        @BindingAdapter("android:navigateAndSendDataToActionsFragment")
         @JvmStatic
-        fun navigateAndSendDataToDetailFragment(view: CardView, currentItem: DhtItinTrabajoServicio){
+        fun navigateAndSendDataToActionsFragment(view: CardView, currentItem: DhtItinTrabajoServicio){
             view.setOnClickListener {
-                val action = ServicesFragmentDirections.actionServicesScreenToDetailFragment(currentItem)
+                val action = ServicesFragmentDirections.actionServicesScreenToActionsFragment(currentItem)
                 view.findNavController().navigate(action)
             }
         }

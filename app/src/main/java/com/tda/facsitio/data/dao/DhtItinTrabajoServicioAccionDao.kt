@@ -18,7 +18,7 @@ interface DhtItinTrabajoServicioAccionDao {
     @Query("SELECT * FROM dht_itin_trabajo_servicio_accion " +
             "WHERE ix_itinerario_trabajo = :ixItinTrabajo " +
             "and  id_servicio = :servicio")
-    fun obtenerAccionesByServicio(ixItinTrabajo: String, servicio: Long): List<DhtItinTrabajoServicioAccion>
+    suspend fun obtenerAccionesByServicio(ixItinTrabajo: String, servicio: Long): List<DhtItinTrabajoServicioAccion>
 
 
     // ----- Datos de prueba
