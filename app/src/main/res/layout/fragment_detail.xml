@@ -24,40 +24,34 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageButton
-                android:id="@+id/ibBack"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
-                android:src="@drawable/ic_arrow_back"
-                android:tint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/ibForward"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:background="?attr/selectableItemBackground"
-                android:src="@drawable/ic_arrow_forward"
-                android:tint="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <TextView
-                android:id="@+id/tvBarInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:fontFamily="@font/ubuntu_medium"
-                android:text="4 de 60"
+                android:text="Nombre del cliente:"
+                android:textColor="@color/white"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvReferenciaClienteBar"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvReferenciaClienteBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/ubuntu_medium"
+                android:maxLines="1"
+                android:text="@{args.currentService.referenciaCliente}"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/ibForward"
-                app:layout_constraintStart_toEndOf="@+id/ibBack"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Nombre del cliente" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -70,35 +64,17 @@
             app:layout_constraintTop_toBottomOf="@+id/clBar">
 
             <TextView
-                android:id="@+id/tvReferenciaCliente"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ellipsize="end"
-                android:fontFamily="@font/ubuntu_medium"
-                android:maxLines="2"
-                android:text="@{args.currentService.referenciaCliente}"
-                android:textColor="?attr/primaryTextColor"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Nombre del cliente" />
-
-            <TextView
                 android:id="@+id/tvIdServicio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:convertLongAndSetText="@{args.currentService.idServicio}"
                 android:fontFamily="@font/ubuntu_bold"
                 android:textColor="@color/secondaryColor"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvReferenciaCliente"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Id servicio" />
 
             <View
@@ -122,14 +98,14 @@
                 android:textColor="@color/secondaryColor"
                 android:textSize="16sp"
                 app:layout_constraintStart_toEndOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/tvReferenciaCliente"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Id contrato" />
 
             <TextView
                 android:id="@+id/tvReferenciaMed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/ubuntu_regular"
                 android:text="@{args.currentService.referenciaMedidor}"
@@ -167,7 +143,7 @@
                 android:id="@+id/tvReferenciaDireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"

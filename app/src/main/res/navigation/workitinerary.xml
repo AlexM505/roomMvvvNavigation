@@ -51,5 +51,12 @@
         <argument
             android:name="currentService"
             app:argType="com.tda.facsitio.data.model.DhtItinTrabajoServicio" />
+        <action
+            android:id="@+id/action_actionsFragment_to_detailScreen"
+            app:destination="@id/detailScreen"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>

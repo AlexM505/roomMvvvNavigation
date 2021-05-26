@@ -71,7 +71,7 @@ class ActionsFragment : Fragment() {
             when(it.status){
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
-                    it.data?.let { actions -> actionsAdapter.setListActionData(actions) }
+                    it.data?.let { actions -> actionsAdapter.setListActionData(actions, actionsFragmentArgs.currentService) }
                 }
                 Status.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE

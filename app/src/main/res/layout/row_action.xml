@@ -56,7 +56,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardView2"
+                android:id="@+id/cvEstadoAcion"
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_marginStart="16dp"
@@ -76,9 +76,9 @@
                 android:text="Estado de la accion"
                 android:textColor="@color/red"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView2"
-                app:layout_constraintStart_toEndOf="@+id/cardView2"
-                app:layout_constraintTop_toTopOf="@+id/cardView2" />
+                app:layout_constraintBottom_toBottomOf="@+id/cvEstadoAcion"
+                app:layout_constraintStart_toEndOf="@+id/cvEstadoAcion"
+                app:layout_constraintTop_toTopOf="@+id/cvEstadoAcion" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

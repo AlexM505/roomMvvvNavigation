@@ -4,17 +4,23 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.tda.facsitio.R
+import com.tda.facsitio.data.model.DhtItinTrabajoServicio
 import com.tda.facsitio.data.model.DhtItinTrabajoServicioAccion
+import com.tda.facsitio.ui.services.ServicesFragmentDirections
 import kotlinx.android.synthetic.main.row_action.view.*
 
 class ActionsAdapter (val context: Context) : RecyclerView.Adapter<ActionsAdapter.ActionsViewHolder>() {
 
     private var dataList = emptyList<DhtItinTrabajoServicioAccion>()
+    private lateinit var currentService : DhtItinTrabajoServicio
 
-    fun setListActionData(data : List<DhtItinTrabajoServicioAccion>){
+    fun setListActionData(data : List<DhtItinTrabajoServicioAccion>, service : DhtItinTrabajoServicio){
         dataList = data
+        currentService = service
         notifyDataSetChanged()
     }
 
@@ -36,6 +42,24 @@ class ActionsAdapter (val context: Context) : RecyclerView.Adapter<ActionsAdapte
         fun bindView(action: DhtItinTrabajoServicioAccion){
             itemView.tvReferenciaAccion.text = action.referenciaAccion
             itemView.tvEsTrabajoAccion.text = action.esTrabajoAccion
+
+            itemView.cvAccionRow.setOnClickListener {
+                when(action.tiTrabajoAccion){
+                    "LECTU" ->{
+                        val actionDirection = ActionsFragmentDirections.actionActionsFragmentToDetailScreen(currentService)
+                        itemView.cvAccionRow.findNavController().navigate(actionDirection)
+                    }
+                    "CARTA" ->{
+                        Toast.makeText(context, "Viajar a vista carta", Toast.LENGTH_SHORT).show()
+                    }
+                    "COBRO" ->{
+                        Toast.makeText(context, "Viajar a vista cobro", Toast.LENGTH_SHORT).show()
+                    }
+                    "IMPFA" ->{
+                        Toast.makeText(context, "Viajar a vista impresion factura", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
     }
 }
