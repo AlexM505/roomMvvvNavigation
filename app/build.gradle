@@ -36,7 +36,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    kapt { generateStubs = true }
+//    kapt { generateStubs = true }
+    repositories {
+        mavenCentral()
+        maven { url 'https://mapbox.bintray.com/mapbox' }
+    }
 }
 
 dependencies {
@@ -82,4 +86,7 @@ dependencies {
 
     //Shared Preference
     implementation 'androidx.preference:preference-ktx:1.1.1'
+
+    //Mapbox
+    implementation 'com.mapbox.mapboxsdk:mapbox-android-navigation-ui:0.42.6'
 }

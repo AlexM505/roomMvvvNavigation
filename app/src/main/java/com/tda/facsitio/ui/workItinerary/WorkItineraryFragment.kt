@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.data.db.FactsitioDatabase
 import com.tda.facsitio.data.db.rePopulateDb
 import com.tda.facsitio.databinding.FragmentWorkItineraryBinding
+import com.tda.facsitio.ui.map.MapFragment
 import com.tda.facsitio.ui.services.ServicesFragment
 import com.tda.facsitio.ui.zhelp.SharedViewModel
 import com.tda.facsitio.utils.MyPreferencesUtil
@@ -54,7 +55,8 @@ class WorkItineraryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (preferences.loadTagFragment().equals(ServicesFragment.TAG_SCREEN)){
+        if (preferences.loadTagFragment().equals(ServicesFragment.TAG_SCREEN)
+            || preferences.loadTagFragment().equals(MapFragment.TAG_SCREEN)){
             preferences.setTagFragment(TAG_SCREEN)
             mSharedViewModel.fadeAnim(requireActivity().bottom_nav)
         }else{

@@ -17,6 +17,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_workItineraryScreen_to_mapFragment"
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/servicesScreen"
@@ -58,5 +65,14 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.tda.facsitio.ui.map.MapFragment"
+        android:label="Ubicaciones"
+        tools:layout="@layout/fragment_map">
+        <argument
+            android:name="currentItin"
+            app:argType="com.tda.facsitio.data.model.DhtItinTrabajo" />
     </fragment>
 </navigation>

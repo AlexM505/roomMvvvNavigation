@@ -1,8 +1,10 @@
 package com.tda.facsitio.ui.zhelp
 
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
@@ -50,6 +52,15 @@ class BindingAdapters {
         fun navigateAndSendDataToActionsFragment(view: CardView, currentItem: DhtItinTrabajoServicio){
             view.setOnClickListener {
                 val action = ServicesFragmentDirections.actionServicesScreenToActionsFragment(currentItem)
+                view.findNavController().navigate(action)
+            }
+        }
+
+        @BindingAdapter("android:navigateAndSendDataToMapFragment")
+        @JvmStatic
+        fun navigateAndSendDataToMapFragment(view: ConstraintLayout, currentItem: DhtItinTrabajo){
+            view.setOnClickListener {
+                val action = WorkItineraryFragmentDirections.actionWorkItineraryScreenToMapFragment(currentItem)
                 view.findNavController().navigate(action)
             }
         }
