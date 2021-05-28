@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/ubuntu_bold"
-                    android:text="Centro"
+                    android:text="@string/centro"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="@+id/ivCheck"
@@ -106,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubuntu_regular"
-                        android:text="Ruta"
+                        android:text="@string/ruta"
                         android:textColor="?attr/secondaryTextColor"
                         android:textSize="14sp" />
 
@@ -115,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/ubuntu_regular"
-                        android:text="Itinerario"
+                        android:text="@string/itinerario"
                         android:textColor="?attr/secondaryTextColor"
                         android:textSize="14sp" />
 
@@ -167,7 +167,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/ubuntu_medium"
-                    android:text="Informacion"
+                    android:text="@string/informacion"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/ivInfo"
@@ -218,7 +218,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/ubuntu_regular"
-                        android:text="servicios"
+                        android:text="@string/servicios_min"
                         android:textColor="?attr/secondaryTextColor"
                         android:textSize="14sp" />
 
@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="contratos"
+                        android:text="@string/contratos"
                         android:fontFamily="@font/ubuntu_regular"
                         android:textColor="?attr/secondaryTextColor"
                         android:textSize="14sp"/>

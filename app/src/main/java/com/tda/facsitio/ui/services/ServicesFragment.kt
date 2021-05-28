@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.R
@@ -73,7 +73,7 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
         if(mServicesViewModel.serviciosByItin.value == null)
             mServicesViewModel.searchServiciosByItin(servicesFragmentArgs.currentItin.ixItinerarioTrabajo)
 
-        mServicesViewModel.serviciosByItin.observe(viewLifecycleOwner) {
+        mServicesViewModel.serviciosByItin.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.progressBar.visibility = View.GONE
@@ -88,7 +88,7 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
                     Toast.makeText(requireContext(), it.message, Toast.LENGTH_LONG).show()
                 }
             }
-        }
+        })
     }
 
     override fun onDestroyView() {
@@ -121,11 +121,11 @@ class ServicesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchThroughDatabase(query: String) {
         var searchQuery = query
         searchQuery = "%$searchQuery%"
-        mServicesViewModel.searchServiciosDb(searchQuery).observe(this) { list ->
+        mServicesViewModel.searchServiciosDb(searchQuery).observe(this , Observer{ list ->
             list.let {
                 servicesAdapter.setData(it)
             }
-        }
+        })
     }
 
 }

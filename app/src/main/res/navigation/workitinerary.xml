@@ -37,7 +37,7 @@
     <fragment
         android:id="@+id/detailScreen"
         android:name="com.tda.facsitio.ui.serviceDetail.DetailFragment"
-        android:label="Detalle del servicio"
+        android:label="@string/detalle_servicios"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="currentService"
@@ -46,7 +46,7 @@
     <fragment
         android:id="@+id/actionsFragment"
         android:name="com.tda.facsitio.ui.actions.ActionsFragment"
-        android:label="Acciones"
+        android:label="@string/acciones"
         tools:layout="@layout/fragment_actions">
         <argument
             android:name="currentService"

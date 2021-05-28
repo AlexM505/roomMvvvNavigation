@@ -33,10 +33,10 @@
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:src="@drawable/ic_arrow_forward"
-                android:tint="?attr/primaryTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?attr/primaryTextColor" />
 
             <TextView
                 android:id="@+id/tvReferenciaAccion"
@@ -48,7 +48,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/ubuntu_regular"
                 android:maxLines="2"
-                android:text="Referencia accion del servicio"
+                android:text="@string/referencia_accion_del_servicio"
                 android:textColor="?attr/primaryTextColor"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toStartOf="@+id/ibForward"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/ubuntu_medium"
-                android:text="Estado de la accion"
+                android:text="@string/estado_de_la_accion"
                 android:textColor="@color/red"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/cvEstadoAcion"

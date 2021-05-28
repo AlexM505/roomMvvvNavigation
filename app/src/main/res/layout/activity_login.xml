@@ -40,7 +40,8 @@
                 android:src="@drawable/logo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/app_name" />
 
             <TextView
                 android:id="@+id/tvBienvenido"
@@ -48,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/ubuntu_bold"
-                android:text="Bienvenido"
+                android:text="@string/bienvenido"
                 android:textColor="?attr/primaryTextColor"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu_medium"
-                    android:text="Usuario"
+                    android:text="@string/usuario"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
 
@@ -84,7 +85,7 @@
                     android:paddingEnd="12dp"
                     android:background="@drawable/custom_input"
                     android:fontFamily="@font/ubuntu_medium"
-                    android:hint="AlxD505"
+                    android:hint="@string/ej_alxd505"
                     android:textColorHint="?attr/hintTextColor"
                     android:inputType="text"
                     android:maxLines="1"
@@ -110,7 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ubuntu_medium"
-                    android:text="Contraseña"
+                    android:text="@string/contrase_a"
                     android:textColor="?attr/primaryTextColor"
                     android:textSize="16sp" />
 
@@ -122,7 +123,7 @@
                     android:paddingEnd="12dp"
                     android:background="@drawable/custom_input"
                     android:fontFamily="@font/ubuntu_medium"
-                    android:hint="123456"
+                    android:hint="@string/ej_123456abc"
                     android:textColorHint="?attr/hintTextColor"
                     android:inputType="textPassword"
                     android:maxLines="1"
@@ -140,7 +141,7 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/button_rounded_primary"
                 android:fontFamily="@font/ubuntu_medium"
-                android:text="Ingresar"
+                android:text="@string/ingresar"
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -159,6 +160,7 @@
         android:alpha=".8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/app_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

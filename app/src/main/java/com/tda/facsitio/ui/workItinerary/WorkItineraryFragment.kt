@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.observe
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tda.facsitio.data.db.FactsitioDatabase
 import com.tda.facsitio.data.db.rePopulateDb
@@ -78,15 +78,15 @@ class WorkItineraryFragment : Fragment() {
     }
 
     private fun observeListOfItin(){
-        mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner) { listData ->
+        mWorkItineraryViewModel.getAllItin.observe(viewLifecycleOwner, Observer { listData ->
             mSharedViewModel.checkIfDbEmpty(listData)
             workItinAdapter.setData(listData)
 
             //Validamos si hay itinerarios cargados para no volver a insertarlos
             //por unique consraint (cambiar validacion cuando carguemos desde servidor)
-            if(listData.size > 0)
+            if(listData.isNotEmpty())
                 flatSwipe = false
-        }
+        })
     }
 
     override fun onDestroyView() {

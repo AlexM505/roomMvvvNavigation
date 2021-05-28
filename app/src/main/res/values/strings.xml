@@ -4,9 +4,34 @@
     <string name="itinerarios_de_trabajo">Itinerarios de trabajo</string>
     <string name="configuracion">Configuracion</string>
     <string name="servicios">Servicios</string>
+    <string name="detalle_servicios">Detalle del servicio</string>
+    <string name="acciones">Acciones</string>
 
-    <!--    itinerarios de trabajo fragment-->
+    <!--    itinerarios de trabajo screen-->
     <string name="no_hay_itinerarios_de_trabajo_cargados">No hay itinerarios de trabajo cargados</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="centro">Centro</string>
+    <string name="ruta">Ruta</string>
+    <string name="itinerario">Itinerario</string>
+    <string name="informacion">Informacion</string>
+    <string name="servicios_min">servicios</string>
+    <string name="contratos">contratos</string>
+
+    <!--    Login screen-->
+    <string name="bienvenido">Bienvenido</string>
+    <string name="usuario">Usuario</string>
+    <string name="ej_alxd505">Ej: AlxD505</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="ej_123456abc">Ej: 123456Abc</string>
+    <string name="ingresar">Ingresar</string>
+
+    <!--    Actions screen-->
+    <string name="servicio_actions">Servicio:</string>
+    <string name="medidor_actions">Medidor:</string>
+    <string name="referencia_accion_del_servicio">Referencia accion del servicio</string>
+    <string name="estado_de_la_accion">Estado de la accion</string>
+    <string name="accion_label">Accion label</string>
+
+    <!--    Detalle screen-->
+    <string name="nombre_del_cliente">Nombre del cliente:</string>
+
 </resources>
