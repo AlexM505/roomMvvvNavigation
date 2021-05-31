@@ -41,6 +41,8 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
     private lateinit var preferences: MyPreferencesUtil
     private val mSharedViewModel : SharedViewModel by viewModels()
 
+    private lateinit var styleMap: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Mapbox.getInstance(requireContext(), getString(R.string.access_token))
@@ -54,6 +56,11 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
         binding.lifecycleOwner = this
 
         preferences = MyPreferencesUtil(requireContext())
+        if(preferences.loadDarkModeState())
+            styleMap = Style.DARK
+        else
+            styleMap = Style.MAPBOX_STREETS
+
         mapView = binding.mapView
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync(this)
@@ -71,7 +78,7 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
 
     override fun onMapReady(mapboxMap: MapboxMap) {
         this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
+        mapboxMap.setStyle(styleMap) {
             enableLocationComponent(it)
         }
     }
