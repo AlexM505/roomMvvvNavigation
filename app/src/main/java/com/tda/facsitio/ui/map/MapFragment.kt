@@ -1,13 +1,14 @@
 package com.tda.facsitio.ui.map
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.mapbox.android.core.permissions.PermissionsListener
@@ -15,6 +16,7 @@ import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.geojson.Feature
 import com.mapbox.geojson.FeatureCollection
 import com.mapbox.geojson.Point
+import com.mapbox.geojson.Polygon
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
@@ -24,6 +26,7 @@ import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.style.layers.FillLayer
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
 import com.mapbox.mapboxsdk.style.layers.SymbolLayer
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
@@ -99,19 +102,18 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
         symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(-86.262795,12.102613)))
         symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(-86.262051,12.102702)))
         symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(-86.261855,12.103417)))
-        map.setStyle(
-            Style.Builder().fromUri(styleMap)
-                .withImage(ICON_ID, BitmapUtils.getBitmapFromDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.mapbox_marker_icon_default))!!)
-                .withSource(GeoJsonSource(SOURCE_ID, FeatureCollection.fromFeatures(symbolLayers)))
-                .withLayer(SymbolLayer(LAYER_ID, SOURCE_ID)
-                    .withProperties(iconImage(ICON_ID),
-                        iconSize(1.0f),
-                        iconAllowOverlap(true),
-                        iconIgnorePlacement(true)
-                    )
+
+        val style = Style.Builder().fromUri(styleMap)
+            .withImage(ICON_ID, BitmapUtils.getBitmapFromDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.mapbox_marker_icon_default))!!)
+            .withSource(GeoJsonSource(SOURCE_ID, FeatureCollection.fromFeatures(symbolLayers)))
+            .withLayer(SymbolLayer(LAYER_ID, SOURCE_ID)
+                .withProperties(iconImage(ICON_ID),
+                    iconSize(1.0f),
+                    iconAllowOverlap(true),
+                    iconIgnorePlacement(true)
                 )
-        )
-        {
+            )
+        map.setStyle(style) {
             //mostrando ubicacion del dispositivo
             enableLocationComponent(it)
         }

@@ -23,12 +23,22 @@ suspend fun rePopulateDb(database: FactsitioDatabase?){
             dhtItinTrabajoDao.insertValueDefault()
             dhtItinTrabajoServicioDao.insertServicioDefaultUno()
             dhtItinTrabajoServicioDao.insertServicioDefaultDos()
+            dhtItinTrabajoServicioDao.insertServicioDefaultTres()
+            dhtItinTrabajoServicioDao.insertServicioDefaultCuatro()
+            dhtItinTrabajoServicioDao.insertServicioDefaultCinco()
+            dhtItinTrabajoServicioDao.insertServicioDefaultSeis()
+            dhtItinTrabajoServicioDao.insertServicioDefaultSiete()
 
             dhtItinTrabajoServicioAccionDao.insertAccionDefaultUno()
             dhtItinTrabajoServicioAccionDao.insertAccionDefaultDos()
             dhtItinTrabajoServicioAccionDao.insertAccionDefaultTres()
             dhtItinTrabajoServicioAccionDao.insertAccionDefaultCuatro()
             dhtItinTrabajoServicioAccionDao.insertAccionDefaultCinco()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultSiete()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultOcho()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultNueve()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultDiez()
+            dhtItinTrabajoServicioAccionDao.insertAccionDefaultOnce()
         }
     }
 
