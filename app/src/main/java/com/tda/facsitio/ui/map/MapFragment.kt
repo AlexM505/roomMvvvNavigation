@@ -7,9 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.mapbox.android.core.permissions.PermissionsListener
 import com.mapbox.android.core.permissions.PermissionsManager
+import com.mapbox.geojson.Feature
+import com.mapbox.geojson.FeatureCollection
+import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.LocationComponentOptions
@@ -19,10 +24,17 @@ import com.mapbox.mapboxsdk.maps.MapView
 import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
+import com.mapbox.mapboxsdk.style.layers.PropertyFactory.*
+import com.mapbox.mapboxsdk.style.layers.SymbolLayer
+import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
+import com.mapbox.mapboxsdk.utils.BitmapUtils
 import com.tda.facsitio.R
 import com.tda.facsitio.databinding.FragmentMapBinding
 import com.tda.facsitio.ui.workItinerary.WorkItineraryFragment
 import com.tda.facsitio.ui.zhelp.SharedViewModel
+import com.tda.facsitio.utils.ConstUtils.Companion.ICON_ID
+import com.tda.facsitio.utils.ConstUtils.Companion.LAYER_ID
+import com.tda.facsitio.utils.ConstUtils.Companion.SOURCE_ID
 import com.tda.facsitio.utils.MyPreferencesUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,14 +46,15 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
     }
     private var _binding : FragmentMapBinding?= null
     private val binding get() = _binding!!
+    private val mapFragmentArgs by navArgs<MapFragmentArgs>()
 
     private var permissionsManager : PermissionsManager? = null
-    private var mapboxMap : MapboxMap? = null
+    private lateinit var mapboxMap : MapboxMap
     private var mapView : MapView? = null
+    private lateinit var styleMap: String
+
     private lateinit var preferences: MyPreferencesUtil
     private val mSharedViewModel : SharedViewModel by viewModels()
-
-    private lateinit var styleMap: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,10 +69,10 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
         binding.lifecycleOwner = this
 
         preferences = MyPreferencesUtil(requireContext())
-        if(preferences.loadDarkModeState())
-            styleMap = Style.DARK
+        styleMap = if(preferences.loadDarkModeState())
+            Style.DARK
         else
-            styleMap = Style.MAPBOX_STREETS
+            Style.MAPBOX_STREETS
 
         mapView = binding.mapView
         mapView?.onCreate(savedInstanceState)
@@ -76,9 +89,30 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
         }
     }
 
-    override fun onMapReady(mapboxMap: MapboxMap) {
-        this.mapboxMap = mapboxMap
-        mapboxMap.setStyle(styleMap) {
+    override fun onMapReady(map: MapboxMap) {
+        mapboxMap = map
+        initAddMarker(mapboxMap)
+    }
+
+    private fun initAddMarker(map: MapboxMap) {
+        val symbolLayers = ArrayList<Feature>()
+        symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(-86.262795,12.102613)))
+        symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(-86.262051,12.102702)))
+        symbolLayers.add(Feature.fromGeometry(Point.fromLngLat(-86.261855,12.103417)))
+        map.setStyle(
+            Style.Builder().fromUri(styleMap)
+                .withImage(ICON_ID, BitmapUtils.getBitmapFromDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.mapbox_marker_icon_default))!!)
+                .withSource(GeoJsonSource(SOURCE_ID, FeatureCollection.fromFeatures(symbolLayers)))
+                .withLayer(SymbolLayer(LAYER_ID, SOURCE_ID)
+                    .withProperties(iconImage(ICON_ID),
+                        iconSize(1.0f),
+                        iconAllowOverlap(true),
+                        iconIgnorePlacement(true)
+                    )
+                )
+        )
+        {
+            //mostrando ubicacion del dispositivo
             enableLocationComponent(it)
         }
     }
@@ -130,16 +164,16 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
 
             val customLocationComponentOptions = LocationComponentOptions.builder(requireContext()).build()
 
-            val locationComponent = mapboxMap?.locationComponent
-            locationComponent?.activateLocationComponent(
+            val locationComponent = mapboxMap.locationComponent
+            locationComponent.activateLocationComponent(
                 LocationComponentActivationOptions.builder(requireContext(), loadedMapStyle)
                     .locationComponentOptions(customLocationComponentOptions)
                     .build()
             )
 
-            locationComponent?.isLocationComponentEnabled = true
-            locationComponent?.cameraMode = CameraMode.TRACKING_COMPASS
-            locationComponent?.renderMode = RenderMode.COMPASS
+            locationComponent.isLocationComponentEnabled = true
+            locationComponent.cameraMode = CameraMode.TRACKING_COMPASS
+            locationComponent.renderMode = RenderMode.COMPASS
 
         }else{
             permissionsManager = PermissionsManager(this)
@@ -153,7 +187,7 @@ class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
 
     override fun onPermissionResult(granted: Boolean) {
         if(granted){
-            mapboxMap?.getStyle {
+            mapboxMap.getStyle {
                 enableLocationComponent(it)
             }
         }else{
