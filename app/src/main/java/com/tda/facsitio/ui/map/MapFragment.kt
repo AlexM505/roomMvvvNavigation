@@ -1,13 +1,23 @@
 package com.tda.facsitio.ui.map
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.mapbox.android.core.permissions.PermissionsListener
+import com.mapbox.android.core.permissions.PermissionsManager
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
+import com.mapbox.mapboxsdk.location.LocationComponentOptions
+import com.mapbox.mapboxsdk.location.modes.CameraMode
+import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
+import com.mapbox.mapboxsdk.maps.MapboxMap
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.tda.facsitio.R
 import com.tda.facsitio.databinding.FragmentMapBinding
@@ -17,7 +27,7 @@ import com.tda.facsitio.utils.MyPreferencesUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-class MapFragment : Fragment() {
+class MapFragment : Fragment(), OnMapReadyCallback ,PermissionsListener  {
 
     companion object{
         const val TAG_SCREEN = "MAP_SCREEN"
@@ -25,6 +35,8 @@ class MapFragment : Fragment() {
     private var _binding : FragmentMapBinding?= null
     private val binding get() = _binding!!
 
+    private var permissionsManager : PermissionsManager? = null
+    private var mapboxMap : MapboxMap? = null
     private var mapView : MapView? = null
     private lateinit var preferences: MyPreferencesUtil
     private val mSharedViewModel : SharedViewModel by viewModels()
@@ -44,13 +56,7 @@ class MapFragment : Fragment() {
         preferences = MyPreferencesUtil(requireContext())
         mapView = binding.mapView
         mapView?.onCreate(savedInstanceState)
-        mapView?.getMapAsync { mapboxMap ->
-
-            mapboxMap.setStyle(Style.MAPBOX_STREETS) {
-
-            }
-
-        }
+        mapView?.getMapAsync(this)
 
         return binding.root
     }
@@ -60,6 +66,13 @@ class MapFragment : Fragment() {
         if(preferences.loadTagFragment().equals(WorkItineraryFragment.TAG_SCREEN)){
             preferences.setTagFragment(TAG_SCREEN)
             mSharedViewModel.fadeOutAnim(requireActivity().bottom_nav)
+        }
+    }
+
+    override fun onMapReady(mapboxMap: MapboxMap) {
+        this.mapboxMap = mapboxMap
+        mapboxMap.setStyle(Style.MAPBOX_STREETS) {
+            enableLocationComponent(it)
         }
     }
 
@@ -102,5 +115,51 @@ class MapFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         mapView?.onDestroy()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun enableLocationComponent(loadedMapStyle : Style){
+        if (PermissionsManager.areLocationPermissionsGranted(requireContext())){
+
+            val customLocationComponentOptions = LocationComponentOptions.builder(requireContext()).build()
+
+            val locationComponent = mapboxMap?.locationComponent
+            locationComponent?.activateLocationComponent(
+                LocationComponentActivationOptions.builder(requireContext(), loadedMapStyle)
+                    .locationComponentOptions(customLocationComponentOptions)
+                    .build()
+            )
+
+            locationComponent?.isLocationComponentEnabled = true
+            locationComponent?.cameraMode = CameraMode.TRACKING_COMPASS
+            locationComponent?.renderMode = RenderMode.COMPASS
+
+        }else{
+            permissionsManager = PermissionsManager(this)
+            permissionsManager!!.requestLocationPermissions(requireActivity())
+        }
+    }
+
+    override fun onExplanationNeeded(permissionsToExplain: MutableList<String>?) {
+        Toast.makeText(requireContext(), "Es necesario aceptar los permisos para mostrar la ubicacion del dispositivo", Toast.LENGTH_LONG).show()
+    }
+
+    override fun onPermissionResult(granted: Boolean) {
+        if(granted){
+            mapboxMap?.getStyle {
+                enableLocationComponent(it)
+            }
+        }else{
+            Toast.makeText(requireContext(), "User location not granted", Toast.LENGTH_LONG).show()
+            //requireActivity().onBackPressed()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        permissionsManager?.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }
